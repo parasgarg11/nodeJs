@@ -17,7 +17,6 @@ function log(message){
 }
 module.exports = log;
 
-
 //EXTENDING EVENTEMITTER Update
 const EventEmitter = require('events'); 
 

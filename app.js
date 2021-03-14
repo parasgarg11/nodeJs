@@ -40,7 +40,6 @@ const path = require('path'); //this is built in module. If it’s not then chec
 var pathObj = path.parse(__dirname); 
 console.log(pathObj); 
 
-
 //-------------------------------------------------
 // OS Module
 const os = require('os'); 
