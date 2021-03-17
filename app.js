@@ -113,8 +113,8 @@ emitter.emit('messageLogged', {id: 1, url: 'http://'}); //better practice to enc
 
     logger.log('message'); //now it prints message and Listener Called {id: 1, url: 'http://'} means print from both js files 
 
-    //-----------------------------------------------
-    //HTTP MODULE
+//-----------------------------------------------
+//HTTP MODULE
     const http = require('http');
     const server = http.createServer();
     
@@ -145,3 +145,21 @@ emitter.emit('messageLogged', {id: 1, url: 'http://'}); //better practice to enc
     server.listen(3000);
     console.log('Listening on port 3000...');
 
+
+// STREAMS : Start using data, before it has finished loading. e.g. Youtube(not loaded full video)
+    // 1. read stream 2. Write stream
+    const readStream = fs.createReadStream('./docs/blog3.txt', { encoding: 'utf8' }); //blog3 file have a lot of content file
+    const writeStream = fs.createReadStream('./docs/blog4.txt');
+
+    //Event Listener 
+    readStream.on('data', (chunk) =>{  //whenever it sees buffer of stream then get small chunks of data
+        console.log('------NEW CHUNK-------'); 
+        console.log(chunk); //show in small chunks but not in readable form
+        console.log(chunk.toString());
+
+        writeStream.write('\nNEW CHUNK\n');
+        writeStream.write(chunk); 
+    });
+
+    //comment down eventLstener easy way to use alternative
+    readStream.pipe(writeStream); //piping
